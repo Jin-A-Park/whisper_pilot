@@ -1,4 +1,4 @@
-# whisper_pilot
+# whisper 성능평가
 ### 배경 information
 
 참고: https://github.com/hyeonsangjeon/computing-Korean-STT-error-rates
@@ -40,3 +40,10 @@ noise_aug.py > add_noise() > noise_level
 참고 블로그: https://ks-jun.tistory.com/187
 
 디폴트: 0.005 → 0.1
+
+### 실행 예시
+```python
+whisper_performance_analysis % python main.py --audio_path kor_sample/kor_zoom_noisy.mp3 --label_path kor_sample_label/kor_zoom.txt --language Korean --model tiny
+```
+
+
