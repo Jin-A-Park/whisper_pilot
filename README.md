@@ -6,7 +6,7 @@
 1. WER(word error rate): 단어 오류율 (얼마나 많은 단어를 틀렸는지)
 2. CER(character error rate): 낱말 오류율 (얼마나 많은 문자를 틀렸는지)
 
-<p align="center">
+<p>
 <img width="70%" alt="Image" src="https://github.com/user-attachments/assets/46527ea4-f8a5-4ab1-b2b2-9fa4322d0d08" />
 </p>
 
