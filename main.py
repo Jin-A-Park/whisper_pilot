@@ -6,13 +6,19 @@ import time
 #오류 계산용 패키지
 import nlptutti as metrics
 
+#메모리 사용량 확인용 패키지
+from memory_profiler import profile
+
+#@profile
 def transcribe_korean_audio(model_type: str, audio_path: str, language: str):
-  start = time.time()
   model = whisper.load_model(model_type)
+  
+  start = time.time()
   result = model.transcribe(audio_path, language=language)
   end = time.time()
+  
   print(f"인식된 텍스트:\n{result['text']}\n응답시간: {end-start}\n")
-  return result["text"]
+  return result["text"], end-start
   
 def cer(ref_path: str, preds: str):
   with open(ref_path, "r") as file:
@@ -43,7 +49,13 @@ def main(args):
   label_path = args.label_path
   model_type = args.model
   language = args.language
-  preds = transcribe_korean_audio(model_type, audio_path, language)
+  
+  total_time = 0
+  for i in range(5):
+    preds, elapsed_time = transcribe_korean_audio(model_type, audio_path, language)
+    total_time += elapsed_time
+  print(f"평균 응답시간: {total_time/5}\n")
+  
   cer_value = cer(label_path, preds)
   wer_value = wer(label_path, preds)
   print(f"CER: {cer_value}, WER: {wer_value}\n")
